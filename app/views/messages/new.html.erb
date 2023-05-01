@@ -1,0 +1,26 @@
+<body style="background-color: #1a1a1a; color: white;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 p-3">
+        <%= image_tag('SelfDestructLogo.png', alt: 'Self Destruct Logo', height: "45", width: "400", class: "float-start me-2") %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 p-3">
+        <h1>New Message</h1>
+        <table class="table table-dark table-striped">
+          <tbody>
+            <tr>
+              <td>
+                <%= render 'form', message: @message %>
+              </td>
+              <td>
+                <%= button_to 'Back', messages_path, method: :get, class: 'btn btn-sm btn-outline-light text-white' %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>

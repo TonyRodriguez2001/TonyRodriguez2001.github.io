@@ -1,0 +1,48 @@
+<body style="background-color: #1a1a1a; color: white;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 p-3">
+        <%= image_tag('SelfDestructLogo.png', alt: 'Self Destruct Logo', height: "45", width: "400", class: "float-start me-2") %>
+
+        <% if user_signed_in? %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-outline-light float-end me-2" %>
+        <% else %>
+          <%= link_to 'Log in', new_user_session_path, class: "btn btn-outline-light float-end me-2" %>
+          <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-outline-light float-end" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 p-3">
+        <div class="card bg-dark">
+          <div class="card-body">
+            <h1 class="card-title">Show Message</h1>
+            <table class="table table-dark table-striped">
+              <tbody>
+                <tr>
+                  <td><strong>From:</strong></td>
+                  <td><%= @message.from %></td>
+                </tr>
+                <tr>
+                  <td><strong>To:</strong></td>
+                  <td><%= @message.to %></td>
+                </tr>
+                <tr>
+                  <td><strong>Subject:</strong></td>
+                  <td><%= @message.subject %></td>
+                </tr>
+                <tr>
+                  <td><strong>Body:</strong></td>
+                  <td><%= @message.body %></td>
+                </tr>
+              </tbody>
+            </table>
+            <%= button_to 'Back', messages_path, method: :get, class: "btn btn-sm btn-outline-light text-white" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<p id="notice"><%= notice %></p>

@@ -1,0 +1,49 @@
+<%= form_with(model: message, class: 'needs-validation', novalidate: true) do |form| %>
+  <% if message.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+        <% message.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :from, class: 'form-label' %>
+    <%= form.text_field :from, class: 'form-control', placeholder: "John.Doe@Example.com", required: true %>
+    <div class="invalid-feedback">
+      Please provide a valid email address.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :to, class: 'form-label' %>
+    <%= form.text_field :to, class: 'form-control', placeholder: "Jane.Doe@Example.com", required: true %>
+    <div class="invalid-feedback">
+      Please provide a valid email address.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :subject, class: 'form-label' %>
+    <%= form.text_field :subject, class: 'form-control', placeholder: "Meeting on Friday", required: true %>
+    <div class="invalid-feedback">
+      Please provide a subject.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :body, class: 'form-label' %>
+    <%= form.text_area :body, class: 'form-control', placeholder: "Message", required: true %>
+    <div class="invalid-feedback">
+      Please provide a message body.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit 'Send Message', class: 'btn btn-primary' %>
+  </div>
+<% end %>

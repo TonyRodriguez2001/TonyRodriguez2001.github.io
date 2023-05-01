@@ -1,0 +1,51 @@
+<%= notice %>
+<% if user_signed_in? %>
+<body style="background-color: #1a1a1a; color: white;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 p-3">
+        <%= image_tag('SelfDestructLogo.png', alt: 'Self Destruct Logo', height: "45", width: "400", class: "float-start me-2") %>
+
+        <div class="float-end">
+          <% if user_signed_in? %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-outline-light me-2" %>
+          <% else %>
+            <%= link_to 'Log in', new_user_session_path, class: "btn btn-outline-light me-2" %>
+            <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-outline-light" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 p-3">
+        <h2 class="h5">Encrypted Messages (<%= @messages.count %>)</h2>
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Encrypted Sender</th>
+              <th scope="col">Encrypted Recepient</th>
+              <th scope="col">Encrypted Subject</th>
+              <th scope="col">Encrypted Body</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @messages.each do |message| %>
+              <tr>
+                <td><%= message.encrypted_from %></td>
+                <td><%= message.encrypted_to %></td>
+                <td><%= message.encrypted_subject %></td>
+                <td><%= message.encrypted_body %></td>
+                <td><%= button_to 'Show Unencrypted', message, method: :get, class: "btn btn-sm btn-outline-light" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <%= button_to 'New Message', new_message_path, method: :get, class: "btn btn-lg btn-outline-light" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<% end %>
